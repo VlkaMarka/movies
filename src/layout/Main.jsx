@@ -13,19 +13,19 @@ class Main extends React.Component {
   };
 
   componentDidMount(filterData) {
-    this.fetchData(`http://www.omdbapi.com/?apikey=${API_KEY}&s=Matrix`);
+    this.fetchData(`https://www.omdbapi.com/?apikey=${API_KEY}&s=Matrix`);
   }
 
   updateSearch = (searchText, type = "all") => {
     if (searchText) {
       this.fetchData(
-        `http://www.omdbapi.com/?apikey=${API_KEY}&s=${searchText}${
+        `https://www.omdbapi.com/?apikey=${API_KEY}&s=${searchText}${
           type !== "all" ? `&type=${type}` : ""
         }`
       );
     } else {
       this.fetchData(
-        `http://www.omdbapi.com/?apikey=${API_KEY}&s=Matrix${
+        `https://www.omdbapi.com/?apikey=${API_KEY}&s=Matrix${
           type !== "all" ? `&type=${type}` : ""
         }`
       );
@@ -54,7 +54,7 @@ class Main extends React.Component {
   render() {
     const { error, isLoaded, items } = this.state;
     if (error) {
-      return <div>Ошибка: {error.message}</div>;
+      return <p>Ошибка: {error.message}</p>;
     } else if (!isLoaded) {
       return <Preloader />;
     } else {
